@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV – Muhammad Ferdi Hendarmawan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0d1b2a;
+    --teal:   #1b7f79;
+    --gold:   #c9a84c;
+    --cream:  #f5f0e8;
+    --light:  #ffffff;
+    --muted:  #8a9bb0;
+    --border: #d4cfc5;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e3da;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .cv-wrapper {
+    width: 210mm;
+    max-width: 100%;
+    background: var(--light);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.18);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 297mm;
+    overflow: hidden;
+    animation: fadeUp .6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy);
+    padding: 48px 28px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: .15;
+  }
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: .10;
+  }
+
+  /* Photo placeholder */
+  .photo-box {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .photo-frame {
+    width: 130px;
+    height: 155px;
+    border: 3px solid var(--gold);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 1px rgba(201,168,76,.3);
+  }
+
+  .photo-icon {
+    font-size: 42px;
+    opacity: .45;
+    color: var(--gold);
+  }
+
+  .photo-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--gold);
+    opacity: .7;
+    text-transform: uppercase;
+  }
+
+  .corner {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: .8;
+  }
+  .corner.tl { top: 6px; left: 6px;  border-width: 2px 0 0 2px; }
+  .corner.tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+  .corner.bl { bottom: 6px; left: 6px;  border-width: 0 0 2px 2px; }
+  .corner.br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+  /* Sidebar sections */
+  .s-section { position: relative; z-index: 1; }
+
+  .s-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .s-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: .4;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 11px;
+    color: rgba(255,255,255,.75);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .contact-item .icon {
+    font-size: 14px;
+    margin-top: 1px;
+    flex-shrink: 0;
+    color: var(--teal);
+  }
+
+  .skill-bar {
+    margin-bottom: 13px;
+  }
+  .skill-name {
+    color: rgba(255,255,255,.85);
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bar-track {
+    height: 4px;
+    background: rgba(255,255,255,.1);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--teal), var(--gold));
+    border-radius: 99px;
+    animation: growBar .8s ease both;
+  }
+  @keyframes growBar {
+    from { width: 0; }
+  }
+
+  .soft-tag {
+    display: inline-block;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(201,168,76,.25);
+    color: rgba(255,255,255,.78);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 99px;
+    margin: 3px 2px;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 48px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .header-block { border-bottom: 2px solid var(--border); padding-bottom: 24px; }
+
+  .tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  .full-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--navy);
+    letter-spacing: -.01em;
+    margin-bottom: 10px;
+  }
+
+  .full-name span { color: var(--teal); }
+
+  .summary {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .deco-bar {
+    height: 4px;
+    width: 60px;
+    background: linear-gradient(to right, var(--teal), var(--gold));
+    border-radius: 99px;
+    margin-top: 14px;
+  }
+
+  /* Main sections */
+  .m-section { }
+
+  .m-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-title .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .m-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Experience cards */
+  .exp-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 18px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .exp-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .exp-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--light);
+    box-shadow: 0 0 0 2px var(--teal);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .exp-thread {
+    flex: 1;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), var(--border));
+    margin-top: 4px;
+    min-height: 20px;
+  }
+
+  .exp-body { padding-bottom: 6px; }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .exp-org {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+
+  .exp-period {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: #f0f4f8;
+    padding: 2px 9px;
+    border-radius: 99px;
+  }
+
+  /* Education */
+  .edu-card {
+    background: linear-gradient(135deg, #f0f9f8 0%, #faf8f2 100%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .edu-school {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .edu-major {
+    font-size: 12.5px;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .edu-year {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .edu-badge {
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+  .edu-badge small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: .06em;
+    color: rgba(201,168,76,.7);
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* Footer note */
+  .cv-footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .06em;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .cv-wrapper { box-shadow: none; width: 100%; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cv-wrapper">
+
+  <!-- ────── SIDEBAR ────── -->
+  <aside class="sidebar">
+
+    <!-- Pas foto -->
+    <div class="photo-box">
+      <div class="photo-frame">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        <div class="photo-icon">👤</div>
+        <span class="photo-label">Pas Foto</span>
+      </div>
+    </div>
+
+    <!-- Kontak -->
+    <div class="s-section">
+      <div class="s-title">Kontak</div>
+      <div class="contact-item">
+        <span class="icon">📍</span>
+        <span>Blok VI Baru, Aceh Singkil</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📱</span>
+        <span>081261835748</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">✉️</span>
+        <span style="word-break:break-all;">muhammadferdihendarmawan<br>@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- Hard Skills -->
+    <div class="s-section">
+      <div class="s-title">Hard Skills</div>
+
+      <div class="skill-bar">
+        <div class="skill-name">Microsoft Excel</div>
+        <div class="bar-track"><div class="bar-fill" style="width:82%; animation-delay:.1s"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-name">Microsoft Word</div>
+        <div class="bar-track"><div class="bar-fill" style="width:88%; animation-delay:.2s"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-name">Microsoft PowerPoint</div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%; animation-delay:.3s"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-name">Editing Sederhana</div>
+        <div class="bar-track"><div class="bar-fill" style="width:70%; animation-delay:.4s"></div></div>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="s-section">
+      <div class="s-title">Soft Skills</div>
+      <div>
+        <span class="soft-tag">💬 Komunikasi</span>
+        <span class="soft-tag">⏰ Manajemen Waktu</span>
+        <span class="soft-tag">🤝 Kerja Sama Tim</span>
+        <span class="soft-tag">🔄 Adaptasi</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ────── MAIN ────── -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="header-block">
+      <div class="tagline">Curriculum Vitae</div>
+      <div class="full-name">Muhammad Ferdi<br><span>Hendarmawan</span></div>
+      <p class="summary">
+        Lulusan SMA dengan pengalaman nyata di bidang administrasi pemerintahan dan pelayanan publik. 
+        Terbiasa bekerja dalam lingkungan formal, mampu mengelola data, dan siap memberikan kontribusi terbaik dalam setiap peran yang dipercayakan.
+      </p>
+      <div class="deco-bar"></div>
+    </div>
+
+    <!-- Pengalaman Kerja -->
+    <div class="m-section">
+      <div class="m-title"><span class="dot"></span>Pengalaman Kerja</div>
+
+      <div class="exp-card">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-thread"></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Honorer</div>
+          <div class="exp-org">Kejaksaan Negeri Aceh Singkil</div>
+          <span class="exp-period">Februari 2024 – Sekarang</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-thread"></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Petugas Pemutakhiran Data Pemilih</div>
+          <div class="exp-org">KPU / Penyelenggara Pemilu</div>
+          <span class="exp-period">Juni 2024 – Juli 2024</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-line">
+          <div class="exp-dot" style="background:var(--gold);box-shadow:0 0 0 2px var(--gold)"></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Anggota KPPS</div>
+          <div class="exp-org">Komisi Pemilihan Umum (KPU)</div>
+          <span class="exp-period">Desember 2023 – Februari 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pendidikan -->
+    <div class="m-section">
+      <div class="m-title"><span class="dot"></span>Pendidikan</div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-school">SMA Negeri 1 Gunung Meriah</div>
+          <div class="edu-major">Ilmu Pengetahuan Sosial (IPS)</div>
+          <div class="edu-year">Lulus Tahun 2023</div>
+        </div>
+        <div class="edu-badge">
+          90.50
+          <small>Nilai Ijazah</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="cv-footer">
+      Dokumen ini dibuat dengan jujur dan dapat dipertanggungjawabkan &nbsp;·&nbsp; Muhammad Ferdi Hendarmawan
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
